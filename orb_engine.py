@@ -146,7 +146,7 @@ class AlpacaProvider:
 # --------------------------------------------------------------------------- #
 def completed_bars(bars: pd.DataFrame, now: pd.Timestamp) -> pd.DataFrame:
     """Drop any bar whose minute has not finished yet."""
-    cut = bars.index.searchsorted(now - BAR, side="right")
+    cut = bars.index.searchsorted((now - BAR).floor(BAR), side="right")
     return bars.iloc[:cut]
 
 
